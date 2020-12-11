@@ -1,7 +1,10 @@
 const express = require("express")
 const app = express()
+const morgan = require("morgan")
 
 app.use(express.json())
+app.use(morgan("dev"))
+
 app.use("/boxers", require("./routes/boxerRouter.js"))
 app.use("/movies", require("./routes/movieRouter.js"))
 

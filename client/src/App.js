@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react"
 import axios from "axios"
 import Movie from "./components/Movie.js"
 import AddMovieForm from "./components/AddMovieForm.js"
-import { resetWarningCache } from "prop-types"
 
 export default function App() {
     const [ movies, setMovies] = useState([])
@@ -10,7 +9,7 @@ export default function App() {
     function getMovies() {
         axios.get("/movies")
         .then(res => setMovies(res.data))
-        .catch(err => console.log(err))
+        .catch(err => console.log(err.response.data.errMsg))
     }
     function addMovie(newMovie) {
         axios.post("/movies", newMovie)
